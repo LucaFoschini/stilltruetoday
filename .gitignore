@@ -1,0 +1,10 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+.venv/
+harness/.cache/
+harness/outputs/
+.DS_Store
+harness/.env
+pdf/

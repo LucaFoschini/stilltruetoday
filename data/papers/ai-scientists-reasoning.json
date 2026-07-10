@@ -1,0 +1,34 @@
+{
+  "paper": {
+    "id": "ai-scientists-reasoning",
+    "title": "AI scientists produce results without reasoning scientifically",
+    "short_title": "AI scientists don't reason scientifically",
+    "authors_short": "Ríos-García et al.",
+    "venue": "arXiv (preprint)",
+    "year": 2026,
+    "doi": null,
+    "url": "https://arxiv.org/abs/2604.18805",
+    "arxiv": "2604.18805",
+    "published_date": "2026-04",
+    "authors_repo": "https://lamalab-org.github.io/corral",
+    "claim": "Across 8 domains and 25,000+ agent runs, LLM-based scientific agents fail to follow the epistemic norms of science: evidence is ignored in 68% of traces, refutation-driven belief revision occurs in only 26%, and convergent multi-test evidence is rare. The base model, not the agent scaffold, drives both performance and behavior.",
+    "framing": "Models keep improving. This will track how the paper's own agent benchmarks look as newer base models ship, on the paper's own metrics. It is not a verdict on the paper.",
+    "readiness_caveat": "Higher task scores don't imply scientific reasoning. The paper's finding is about epistemic behavior (using evidence, revising beliefs), a dimension separate from raw benchmark accuracy.",
+    "version_drift_note": null,
+    "status": "curated",
+    "status_note": "Curated, not yet re-run. The pipeline (the open 'corral' harness plus Zenodo data) makes it reproducible, but reproduction is heavy: an agentic eval across 8 domains with a behavioral metric (evidence-ignored %), not a simple accuracy against a reference line. The plan is to re-run the base-model layer on today's frontier models.",
+    "claim_status": {
+      "verdict": "coming-soon",
+      "as_of": "2026-07",
+      "basis": "Reproduction is queued. The agentic 'corral' harness is a heavier build, so this one goes live once we re-run it on current base models."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Ríos-García, Alampara, Jablonka et al.",
+      "role": "Original benchmark of LLM scientific agents across 8 domains, and the open-source 'corral' harness plus Zenodo data.",
+      "link": "https://lamalab-org.github.io/corral"
+    }
+  ],
+  "protocols": []
+}

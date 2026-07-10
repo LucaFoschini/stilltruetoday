@@ -1,0 +1,35 @@
+# Continuous re-run: detect new models on OpenRouter and append their bars.
+# Skeleton only for v0 — the runner in harness/ is not wired yet. Manual trigger for now;
+# the weekly schedule is commented out until harness/run.py exists and OPENROUTER_API_KEY is set.
+name: eval
+
+on:
+  workflow_dispatch:
+    inputs:
+      paper:
+        description: "Paper id (e.g. illusion-of-readiness)"
+        required: true
+        default: "illusion-of-readiness"
+  # schedule:
+  #   - cron: "0 7 * * 1"   # weekly, Mondays 07:00 UTC — enable once harness/run.py is wired
+
+permissions:
+  contents: write
+
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Placeholder — harness not yet wired
+        run: |
+          echo "TODO: pip install -r harness/requirements.txt"
+          echo "TODO: python harness/run.py --paper '${{ github.event.inputs.paper }}' --only-new-models"
+          echo "TODO: commit updated data/papers/*.json if changed"
+        # env:
+        #   OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}

@@ -1,0 +1,86 @@
+{
+  "paper": {
+    "id": "rare-disease-llm-benchmark",
+    "title": "Systematic benchmarking demonstrates large language models have not reached the diagnostic accuracy of traditional rare-disease decision support tools",
+    "short_title": "LLMs vs. rare-disease decision-support tools",
+    "authors_short": "Reese et al.",
+    "venue": "European Journal of Human Genetics",
+    "year": 2026,
+    "doi": "10.1038/s41431-026-02054-5",
+    "url": "https://www.nature.com/articles/s41431-026-02054-5",
+    "arxiv": null,
+    "published_date": "2026-02",
+    "authors_repo": "https://github.com/monarch-initiative/phenopacket2prompt",
+    "claim": "Across 5,213 published rare-disease case reports (Phenopackets → HPO terms), the best LLM ranked the correct diagnosis first in 23.6% of cases, versus 35.5% for Exomiser, a traditional phenotype-driven tool. LLMs are improving but have not reached the accuracy of established bioinformatics tools.",
+    "framing": "Models keep improving, and this task is fully reproducible: the pipeline (phenopacket2prompt, MIT) and data are open. This tracks how the LLM-vs-Exomiser gap looks as newer models ship, on the paper's own task and Top-1 metric. It is not a verdict on the paper.",
+    "readiness_caveat": "Top-1 rank accuracy is one axis. The paper's own point stands regardless of newer models: an LLM matching Exomiser's Top-1 rate would still need calibration, abstention and transparent reasoning before clinical use.",
+    "version_drift_note": "Every LLM tested here is from 2023–2024 (o1-preview and o1-mini from Sep 2024, GPT-4o Aug 2024, Gemini 2.0 Flash, Meditron). That is the shelf-life gap StillTrueToday exists to close. The reasoning-model generation after o1 is not represented.",
+    "status": "seeded",
+    "status_note": "Seeded with the paper's published Top-1 numbers (read from Fig 3; Exomiser 35.5% and best-LLM o1-preview 23.6% are exact from the text, other LLM bars are approximate). Reproduce-then-extend is feasible via the authors' open MIT pipeline + Zenodo data. That is the next build step for this paper.",
+    "claim_status": {
+      "as_of": "2026-07",
+      "bar_label": "Exomiser's 35.5% Top-1 (the paper's own baseline)",
+      "basis_pending": "Frontier models are running now; the verdict resolves when they land.",
+      "auto": {
+        "protocol": "stilltruetoday-rd-top1",
+        "threshold": 35.5,
+        "close_margin": 6,
+        "bias_buffer": 4,
+        "protocol_caveat": "under StillTrueToday's LLM-judge, which grades a few points more leniently than the paper's programmatic grounding"
+      }
+    }
+  },
+  "contributors": [
+    {
+      "name": "Reese et al. (paper authors, Monarch Initiative)",
+      "role": "Original benchmark of 5,213 phenopackets, the open-source phenopacket2prompt pipeline (MIT), and the published LLM-vs-Exomiser results.",
+      "link": "https://github.com/monarch-initiative/phenopacket2prompt"
+    }
+  ],
+  "protocols": [
+    {
+      "id": "paper-rd-top1",
+      "label": "Rare-disease diagnosis · 5,213 phenopackets · Top-1 rank",
+      "benchmark": "Rare-disease differential diagnosis (5,213 published case reports)",
+      "dataset_slice": "5,213 phenopackets (HPO terms → ranked OMIM/Orphanet diagnosis), phenotype-only",
+      "scoring_method": "programmatic match of ranked candidate to gold diagnosis via Mondo grounding (PhEval); correct diagnosis at rank 1",
+      "metric": "accuracy",
+      "unit": "%",
+      "higher_is_better": true,
+      "contributor": "Reese et al.",
+      "source_repo": "https://github.com/monarch-initiative/phenopacket2prompt",
+      "provenance": "Top-1 values read from Fig 3. Exomiser (35.5%) and o1-preview (23.6%, the best LLM) are EXACT from the paper text; the other LLM bars are APPROXIMATE reads from the figure and flagged. Medfound-176B scored <=0.25% (effectively 0).",
+      "reference_line": {"value": 35.5, "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"},
+      "runs": [
+        {"model": "Meditron-70B",   "score": 12.0, "model_release_date": "2023-12", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized"},
+        {"model": "Meditron3-70B",  "score": 14.0, "model_release_date": "2024-07", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized"},
+        {"model": "GPT-4o",         "score": 20.5, "model_release_date": "2024-08", "run_date": "2025-01", "approximate": true},
+        {"model": "o1-mini",        "score": 18.0, "model_release_date": "2024-09", "run_date": "2025-01", "approximate": true},
+        {"model": "o1-preview",     "score": 23.6, "model_release_date": "2024-09", "run_date": "2025-01", "approximate": false, "notes": "best LLM in the paper"},
+        {"model": "Medfound-176B",  "score": 0.1,  "model_release_date": "2024-11", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized; <=0.25% in all tests"},
+        {"model": "Gemini 2.0 Flash","score": 19.5, "model_release_date": "2024-12", "run_date": "2025-01", "approximate": true}
+      ]
+    },
+    {
+      "id": "stilltruetoday-rd-top1",
+      "label": "Rare-disease diagnosis · 50-case subset · Top-1 (StillTrueToday run)",
+      "benchmark": "Rare-disease differential diagnosis (5,213 published case reports)",
+      "dataset_slice": "first 50 cases of the paper's Zenodo corpus (record 15324355)",
+      "scoring_method": "authors' exact prompts; rank of gold diagnosis in the model's ranked list found by an LLM judge (gpt-4o-2024-08-06), via OpenRouter",
+      "metric": "accuracy",
+      "unit": "%",
+      "higher_is_better": true,
+      "contributor": "StillTrueToday",
+      "source_repo": "this repo · harness/reese_run.py",
+      "provenance": "Numbers produced BY StillTrueToday (2026-07) on the paper's own Zenodo prompts. Our LLM-judge grading runs ~3–4 pts more lenient than the paper's PhEval programmatic grounding. Validated: we scored the authors' own stored o1-preview responses at 26.0% against their published 23.6%. So compare within this series, and treat absolute values against the 35.5% line with that bias in mind.",
+      "reference_line": {"value": 35.5, "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"},
+      "runs": [
+        {"model": "o1-preview", "score": 26.0, "model_release_date": "2024-09", "run_date": "2026-07", "n_items": 50, "era": "paper-era rerun", "notes": "scored from authors' stored responses; validation vs published 23.6%"},
+        {"model": "Gemini 3.5 Flash", "score": 24.0, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 50, "era": "current"},
+        {"model": "Claude Opus 4.8", "score": 30.0, "model_release_date": "2026-06", "run_date": "2026-07", "n_items": 50, "era": "current"},
+        {"model": "Gemini 3.1 Pro Preview", "score": 36.0, "model_release_date": "2026-04", "run_date": "2026-07", "n_items": 50, "era": "current", "notes": "best current model; nominally at Exomiser's 35.5% but within our judge's leniency margin"},
+        {"model": "GPT-5.5 Pro", "score": 11.4, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 44, "era": "current", "approximate": true, "notes": "returned a single diagnosis rather than a ranked list (Top-1=Top-3=Top-10), score is a format artifact, not a clean capability read"}
+      ]
+    }
+  ]
+}

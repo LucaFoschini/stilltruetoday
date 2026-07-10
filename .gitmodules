@@ -1,0 +1,3 @@
+[submodule "harness/vendor/health-ai-readiness-eval"]
+	path = harness/vendor/health-ai-readiness-eval
+	url = https://github.com/aiden-ygu/health-ai-readiness-eval

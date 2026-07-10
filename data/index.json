@@ -1,0 +1,41 @@
+{
+  "collection": "Papers from across the sciences that concluded today's AI can't do some task. We re-run each on current models, on the paper's own terms.",
+  "submit_url": "https://forms.gle/9vZdRjVrr2AtDhqG6",
+  "submit_cta": "Read a paper that says today's AI can't match a human expert or an established tool? Its models may already be out of date. Nominate it and we'll re-run it on today's models.",
+  "submit_note": "Thank you to the authors who open-source their benchmarks and code. That is what makes a re-run possible, and it is what science is supposed to be.",
+  "papers": [
+    {
+      "id": "illusion-of-readiness",
+      "file": "papers/illusion-of-readiness.json",
+      "short_title": "The Illusion of Readiness",
+      "authors_short": "Gu et al.",
+      "venue": "Nature Medicine",
+      "year": 2026,
+      "topic": "Multimodal medical reasoning",
+      "claim_short": "Frontier models post high scores on medical image benchmarks but stay brittle under stress, not yet ready for clinical use.",
+      "status": "live"
+    },
+    {
+      "id": "rare-disease-llm-benchmark",
+      "file": "papers/rare-disease-llm-benchmark.json",
+      "short_title": "LLMs vs. rare-disease decision-support tools",
+      "authors_short": "Reese et al.",
+      "venue": "European Journal of Human Genetics",
+      "year": 2026,
+      "topic": "Rare-disease diagnosis",
+      "claim_short": "Best LLM ranked the diagnosis first in 23.6% of cases, against 35.5% for Exomiser. LLMs have not caught the traditional tool.",
+      "status": "seeded"
+    },
+    {
+      "id": "ai-scientists-reasoning",
+      "file": "papers/ai-scientists-reasoning.json",
+      "short_title": "AI scientists don't reason scientifically",
+      "authors_short": "Ríos-García et al.",
+      "venue": "arXiv (preprint)",
+      "year": 2026,
+      "topic": "AI-for-science agents",
+      "claim_short": "LLM science agents ignore evidence in 68% of traces and rarely revise beliefs. They don't reason scientifically.",
+      "status": "curated"
+    }
+  ]
+}

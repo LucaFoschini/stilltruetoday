@@ -1,0 +1,128 @@
+{
+  "paper": {
+    "id": "illusion-of-readiness",
+    "title": "The Illusion of Readiness: Stress Testing Large Frontier Models on Multimodal Medical Benchmarks",
+    "short_title": "The Illusion of Readiness",
+    "authors_short": "Gu et al.",
+    "venue": "Nature Medicine",
+    "year": 2026,
+    "doi": "10.1038/s41591-026-04501-8",
+    "url": "https://www.nature.com/articles/s41591-026-04501-8",
+    "arxiv": "2509.18234",
+    "published_date": "2026-06-24",
+    "authors_repo": "https://github.com/aiden-ygu/health-ai-readiness-eval",
+    "claim": "Frontier models post high headline scores on multimodal medical benchmarks but remain brittle under stress (shortcut behavior, hallucinated perception, faulty reasoning), and are not yet ready for reliable clinical use.",
+    "framing": "Models keep improving. This page tracks how the paper's own benchmarks look as newer models ship, on the paper's own axes, using the paper's own methods. It is not a verdict on the paper.",
+    "readiness_caveat": "Higher accuracy on a public benchmark is NOT the same as 'ready'. The paper's readiness bar also requires robustness under perturbation, appropriate abstention, and clinically valid reasoning, dimensions a plain accuracy score does not capture. (Point made first by Yishan Wong in his reproduction.)",
+    "version_drift_note": "Between the arXiv preprint (Sep 2025) and the Nature Medicine version (Jun 2026), the paper's own model set changed: the preprint's DeepSeek-VL2 was replaced by Claude 3.5 in the main multimodal-accuracy figure. Even the paper's baseline is a moving target, which is why re-running over time is worth doing.",
+    "claim_status": {
+      "verdict": "still-true",
+      "as_of": "2026-07",
+      "basis": "Accuracy keeps climbing (we measured Claude Fable 5 at ~80% on VQA-RAD), but the paper's bar is robustness and clinical readiness, not raw accuracy, and that bar still isn't met."
+    }
+  },
+  "contributors": [
+    {
+      "name": "Gu et al. (paper authors)",
+      "role": "Original benchmark, open-sourced MIT harness, and the published baseline results.",
+      "link": "https://github.com/aiden-ygu/health-ai-readiness-eval"
+    },
+    {
+      "name": "Yishan Wong",
+      "role": "First independent reproduce-then-extend on the public VQA-RAD subset via OpenRouter; established drift baseline and ran current frontier models.",
+      "link": "https://github.com/ywong137/health-ai-readiness-vqarad-addendum"
+    }
+  ],
+  "protocols": [
+    {
+      "id": "paper-vqarad-exact",
+      "label": "VQA-RAD · full set · exact-match",
+      "benchmark": "VQA-RAD",
+      "dataset_slice": "full public set (~291 analyzed items)",
+      "scoring_method": "exact-match on selected option (as published)",
+      "metric": "accuracy",
+      "unit": "%",
+      "higher_is_better": true,
+      "contributor": "Gu et al. (paper authors)",
+      "source_repo": "https://github.com/aiden-ygu/health-ai-readiness-eval",
+      "provenance": "Exact values from arXiv 2509.18234 Extended Data Table 1 (preprint). The Nature version's Fig 1b swapped DeepSeek-VL2 for Claude 3.5; exact published per-model values are being pulled from the authors' result CSVs. The Claude 3.5 entry below is approximate (read from published Fig 1b) and flagged.",
+      "reference_line": null,
+      "runs": [
+        {"model": "GPT-4o", "score": 60.98, "model_release_date": "2024-05", "run_date": "2025-09", "approximate": false},
+        {"model": "Claude 3.5 Sonnet", "score": 62.0, "model_release_date": "2024-06", "run_date": "2026-05", "approximate": true, "notes": "Read from published Fig 1b; exact value pending authors' CSV. Preprint used DeepSeek-VL2 (45.68) in this slot instead."},
+        {"model": "OpenAI o4-mini", "score": 64.08, "model_release_date": "2025-04", "run_date": "2025-09", "approximate": false},
+        {"model": "OpenAI o3", "score": 65.63, "model_release_date": "2025-04", "run_date": "2025-09", "approximate": false},
+        {"model": "Gemini 2.5 Pro", "score": 66.30, "model_release_date": "2025-03", "run_date": "2025-09", "approximate": false},
+        {"model": "GPT-5", "score": 67.85, "model_release_date": "2025-08", "run_date": "2025-09", "approximate": false}
+      ]
+    },
+    {
+      "id": "yishan-vqarad-100-judge",
+      "label": "VQA-RAD · 100-item subset · LLM-judge",
+      "benchmark": "VQA-RAD",
+      "dataset_slice": "VQA-RAD-no-cot, 100-item subset",
+      "scoring_method": "semantic adjudication by gpt-4o-2024-08-06 (LLM judge), temp 0, reasoning=medium, via OpenRouter",
+      "metric": "accuracy",
+      "unit": "%",
+      "higher_is_better": true,
+      "contributor": "Yishan Wong",
+      "source_repo": "https://github.com/ywong137/health-ai-readiness-vqarad-addendum",
+      "provenance": "Exact values from Yishan Wong's addendum repo (independent re-run). NOT directly comparable to the paper's full-set exact-match protocol, different slice and scoring. Kept as its own series by design.",
+      "reference_line": null,
+      "runs": [
+        {"model": "OpenAI o3", "score": 62.0, "model_release_date": "2025-04", "run_date": "2026-06", "era": "paper-era rerun"},
+        {"model": "GPT-5", "score": 67.0, "model_release_date": "2025-08", "run_date": "2026-06", "era": "paper-era rerun"},
+        {"model": "Claude Opus 4.8", "score": 67.0, "model_release_date": "2026-06", "run_date": "2026-06", "era": "current"},
+        {"model": "Gemini 3.1 Pro Preview", "score": 70.0, "model_release_date": "2026-04", "run_date": "2026-06", "era": "current"},
+        {"model": "Gemini 2.5 Pro", "score": 70.0, "model_release_date": "2025-03", "run_date": "2026-06", "era": "paper-era rerun"},
+        {"model": "Gemini 3.5 Flash", "score": 74.0, "model_release_date": "2026-05", "run_date": "2026-06", "era": "current"},
+        {"model": "GPT-5.5 Pro", "score": 79.0, "model_release_date": "2026-05", "run_date": "2026-06", "era": "current"}
+      ]
+    },
+    {
+      "id": "stilltruetoday-vqarad-judge",
+      "label": "VQA-RAD · first-50 subset · LLM-judge (StillTrueToday run)",
+      "benchmark": "VQA-RAD",
+      "dataset_slice": "first 50 items of VQA-RAD test (HF flaviagiammarino/vqa-rad)",
+      "scoring_method": "authors' exact VQA-RAD prompt; semantic adjudication by gpt-4o-2024-08-06 (LLM judge), temp 0, via OpenRouter",
+      "metric": "accuracy",
+      "unit": "%",
+      "higher_is_better": true,
+      "contributor": "StillTrueToday",
+      "source_repo": "this repo · harness/run.py",
+      "provenance": "First numbers produced BY StillTrueToday (2026-07). Faithful to Gu et al.'s VQA-RAD prompt and Yishan's LLM-judge scoring, but on a different 50-item slice, comparable-but-not-identical to Yishan's 100-item protocol, so kept as its own series. GPT-5 here (74.0) is our drift/sanity check against Yishan's GPT-5 (67.0 on his 100-item slice): same ballpark, different items.",
+      "reference_line": null,
+      "runs": [
+        {"model": "GPT-5", "score": 74.0, "model_release_date": "2025-08", "run_date": "2026-07", "n_items": 50, "era": "paper-era rerun", "notes": "drift check vs Yishan's GPT-5 = 67.0"},
+        {"model": "Gemini 3.1 Pro Preview", "score": 68.0, "model_release_date": "2026-04", "run_date": "2026-07", "n_items": 50, "era": "current"},
+        {"model": "Gemini 3.5 Flash", "score": 78.0, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 50, "era": "current"},
+        {"model": "GPT-5.5 Pro", "score": 86.5, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 37, "era": "current", "notes": "13/50 items errored (reasoning-model timeouts); scored on 37"},
+        {"model": "Claude Opus 4.8", "score": 78.0, "model_release_date": "2026-06", "run_date": "2026-07", "n_items": 50, "era": "current"},
+        {"model": "Claude Fable 5", "score": 80.0, "model_release_date": "2026-06", "run_date": "2026-07", "n_items": 50, "era": "current"}
+      ]
+    },
+    {
+      "id": "paper-robustness-stress",
+      "label": "Robustness under stress tests (T1–T5)",
+      "benchmark": "Stress-test suite (NEJM/JAMA-based)",
+      "dataset_slice": "per-test subsets defined in the paper (Table 2)",
+      "scoring_method": "robustness score in [0,1]; 1.0 = fully robust to the perturbation",
+      "metric": "robustness",
+      "unit": "score",
+      "higher_is_better": true,
+      "contributor": "Gu et al. (paper authors)",
+      "source_repo": "https://github.com/aiden-ygu/health-ai-readiness-eval",
+      "provenance": "Exact values read from the published Nature Medicine Fig 1c heatmap. This is the paper's core contribution and the real 'readiness' bar, not reproduced by Yishan (needs the copyright-gated NEJM/JAMA items).",
+      "reference_line": {"value": 1.0, "label": "Fully robust (no degradation under perturbation)"},
+      "dimensions": ["T1 Modality sensitivity", "T2 Modality necessity", "T3 Format perturbation", "T4 Distractor perturbation", "T5 Visual substitution"],
+      "runs": [
+        {"model": "GPT-4o",         "model_release_date": "2024-05", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 0.92, "T2 Modality necessity": 1.00, "T3 Format perturbation": 1.00, "T4 Distractor perturbation": 0.88, "T5 Visual substitution": 1.00}},
+        {"model": "Claude 3.5 Sonnet","model_release_date": "2024-06", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 1.00, "T2 Modality necessity": 0.83, "T3 Format perturbation": 1.00, "T4 Distractor perturbation": 0.81, "T5 Visual substitution": 0.69}},
+        {"model": "OpenAI o4-mini",  "model_release_date": "2025-04", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 0.94, "T2 Modality necessity": 0.78, "T3 Format perturbation": 0.97, "T4 Distractor perturbation": 0.82, "T5 Visual substitution": 0.77}},
+        {"model": "OpenAI o3",       "model_release_date": "2025-04", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 0.92, "T2 Modality necessity": 0.78, "T3 Format perturbation": 1.00, "T4 Distractor perturbation": 0.82, "T5 Visual substitution": 0.67}},
+        {"model": "Gemini 2.5 Pro",  "model_release_date": "2025-03", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 0.92, "T2 Modality necessity": 0.75, "T3 Format perturbation": 0.99, "T4 Distractor perturbation": 0.83, "T5 Visual substitution": 0.77}},
+        {"model": "GPT-5",           "model_release_date": "2025-08", "run_date": "2026-06", "scores": {"T1 Modality sensitivity": 0.92, "T2 Modality necessity": 0.73, "T3 Format perturbation": 0.96, "T4 Distractor perturbation": 0.83, "T5 Visual substitution": 0.69}}
+      ]
+    }
+  ]
+}
