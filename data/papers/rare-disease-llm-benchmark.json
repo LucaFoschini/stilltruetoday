@@ -18,7 +18,7 @@
     "status": "seeded",
     "status_note": "Seeded with the paper's published Top-1 numbers (read from Fig 3; Exomiser 35.5% and best-LLM o1-preview 23.6% are exact from the text, other LLM bars are approximate). Reproduce-then-extend is feasible via the authors' open MIT pipeline + Zenodo data. That is the next build step for this paper.",
     "claim_status": {
-      "as_of": "2026-07",
+      "as_of": "2026-10",
       "bar_label": "Exomiser's 35.5% Top-1 (the paper's own baseline)",
       "basis_pending": "Frontier models are running now; the verdict resolves when they land.",
       "auto": {
@@ -50,15 +50,64 @@
       "contributor": "Reese et al.",
       "source_repo": "https://github.com/monarch-initiative/phenopacket2prompt",
       "provenance": "Top-1 values read from Fig 3. Exomiser (35.5%) and o1-preview (23.6%, the best LLM) are EXACT from the paper text; the other LLM bars are APPROXIMATE reads from the figure and flagged. Medfound-176B scored <=0.25% (effectively 0).",
-      "reference_line": {"value": 35.5, "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"},
+      "reference_line": {
+        "value": 35.5,
+        "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"
+      },
       "runs": [
-        {"model": "Meditron-70B",   "score": 12.0, "model_release_date": "2023-12", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized"},
-        {"model": "Meditron3-70B",  "score": 14.0, "model_release_date": "2024-07", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized"},
-        {"model": "GPT-4o",         "score": 20.5, "model_release_date": "2024-08", "run_date": "2025-01", "approximate": true},
-        {"model": "o1-mini",        "score": 18.0, "model_release_date": "2024-09", "run_date": "2025-01", "approximate": true},
-        {"model": "o1-preview",     "score": 23.6, "model_release_date": "2024-09", "run_date": "2025-01", "approximate": false, "notes": "best LLM in the paper"},
-        {"model": "Medfound-176B",  "score": 0.1,  "model_release_date": "2024-11", "run_date": "2025-01", "approximate": true, "notes": "medical-specialized; <=0.25% in all tests"},
-        {"model": "Gemini 2.0 Flash","score": 19.5, "model_release_date": "2024-12", "run_date": "2025-01", "approximate": true}
+        {
+          "model": "Meditron-70B",
+          "score": 12.0,
+          "model_release_date": "2023-12",
+          "run_date": "2025-01",
+          "approximate": true,
+          "notes": "medical-specialized"
+        },
+        {
+          "model": "Meditron3-70B",
+          "score": 14.0,
+          "model_release_date": "2024-07",
+          "run_date": "2025-01",
+          "approximate": true,
+          "notes": "medical-specialized"
+        },
+        {
+          "model": "GPT-4o",
+          "score": 20.5,
+          "model_release_date": "2024-08",
+          "run_date": "2025-01",
+          "approximate": true
+        },
+        {
+          "model": "o1-mini",
+          "score": 18.0,
+          "model_release_date": "2024-09",
+          "run_date": "2025-01",
+          "approximate": true
+        },
+        {
+          "model": "o1-preview",
+          "score": 23.6,
+          "model_release_date": "2024-09",
+          "run_date": "2025-01",
+          "approximate": false,
+          "notes": "best LLM in the paper"
+        },
+        {
+          "model": "Medfound-176B",
+          "score": 0.1,
+          "model_release_date": "2024-11",
+          "run_date": "2025-01",
+          "approximate": true,
+          "notes": "medical-specialized; <=0.25% in all tests"
+        },
+        {
+          "model": "Gemini 2.0 Flash",
+          "score": 19.5,
+          "model_release_date": "2024-12",
+          "run_date": "2025-01",
+          "approximate": true
+        }
       ]
     },
     {
@@ -73,13 +122,85 @@
       "contributor": "StillTrueToday",
       "source_repo": "this repo · harness/reese_run.py",
       "provenance": "Numbers produced BY StillTrueToday (2026-07) on the paper's own Zenodo prompts. Our LLM-judge grading runs ~3–4 pts more lenient than the paper's PhEval programmatic grounding. Validated: we scored the authors' own stored o1-preview responses at 26.0% against their published 23.6%. So compare within this series, and treat absolute values against the 35.5% line with that bias in mind.",
-      "reference_line": {"value": 35.5, "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"},
+      "reference_line": {
+        "value": 35.5,
+        "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"
+      },
       "runs": [
-        {"model": "o1-preview", "score": 26.0, "model_release_date": "2024-09", "run_date": "2026-07", "n_items": 50, "era": "paper-era rerun", "notes": "scored from authors' stored responses; validation vs published 23.6%"},
-        {"model": "Gemini 3.5 Flash", "score": 24.0, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 50, "era": "current"},
-        {"model": "Claude Opus 4.8", "score": 30.0, "model_release_date": "2026-06", "run_date": "2026-07", "n_items": 50, "era": "current"},
-        {"model": "Gemini 3.1 Pro Preview", "score": 36.0, "model_release_date": "2026-04", "run_date": "2026-07", "n_items": 50, "era": "current", "notes": "best current model; nominally at Exomiser's 35.5% but within our judge's leniency margin"},
-        {"model": "GPT-5.5 Pro", "score": 11.4, "model_release_date": "2026-05", "run_date": "2026-07", "n_items": 44, "era": "current", "approximate": true, "notes": "returned a single diagnosis rather than a ranked list (Top-1=Top-3=Top-10), score is a format artifact, not a clean capability read"}
+        {
+          "model": "o1-preview",
+          "score": 26.0,
+          "model_release_date": "2024-09",
+          "run_date": "2026-07",
+          "n_items": 50,
+          "era": "paper-era rerun",
+          "notes": "scored from authors' stored responses; validation vs published 23.6%"
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "score": 24.0,
+          "model_release_date": "2026-05",
+          "run_date": "2026-07",
+          "n_items": 50,
+          "era": "current"
+        },
+        {
+          "model": "Claude Opus 4.8",
+          "score": 30.0,
+          "model_release_date": "2026-06",
+          "run_date": "2026-07",
+          "n_items": 50,
+          "era": "current"
+        },
+        {
+          "model": "Gemini 3.1 Pro Preview",
+          "score": 36.0,
+          "model_release_date": "2026-04",
+          "run_date": "2026-07",
+          "n_items": 50,
+          "era": "current",
+          "notes": "best current model; nominally at Exomiser's 35.5% but within our judge's leniency margin"
+        },
+        {
+          "model": "GPT-5.5 Pro",
+          "score": 11.4,
+          "model_release_date": "2026-05",
+          "run_date": "2026-07",
+          "n_items": 44,
+          "era": "current",
+          "approximate": true,
+          "notes": "returned a single diagnosis rather than a ranked list (Top-1=Top-3=Top-10), score is a format artifact, not a clean capability read"
+        },
+        {
+          "model": "Gemini 4 Argon",
+          "score": 46.0,
+          "model_release_date": "2026-10",
+          "run_date": "2026-10",
+          "n_items": 50,
+          "era": "current",
+          "top3": 56.0,
+          "top10": 66.0
+        },
+        {
+          "model": "Claude Opus 5.5",
+          "score": 34.0,
+          "model_release_date": "2026-09",
+          "run_date": "2026-10",
+          "n_items": 50,
+          "era": "current",
+          "top3": 58.0,
+          "top10": 60.0
+        },
+        {
+          "model": "GPT-6.1 Sol Pro",
+          "score": 38.0,
+          "model_release_date": "2026-09",
+          "run_date": "2026-10",
+          "n_items": 50,
+          "era": "current",
+          "top3": 56.0,
+          "top10": 64.0
+        }
       ]
     }
   ]
