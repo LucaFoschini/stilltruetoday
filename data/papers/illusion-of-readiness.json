@@ -169,7 +169,7 @@
       "higher_is_better": true,
       "contributor": "StillTrueToday",
       "source_repo": "this repo · harness/run.py",
-      "provenance": "First numbers produced BY StillTrueToday (2026-07). Faithful to Gu et al.'s VQA-RAD prompt and Yishan's LLM-judge scoring, but on a different 50-item slice, comparable-but-not-identical to Yishan's 100-item protocol, so kept as its own series. GPT-5 here (74.0) is our drift/sanity check against Yishan's GPT-5 (67.0 on his 100-item slice): same ballpark, different items.",
+      "provenance": "Numbers produced BY StillTrueToday (2026-07 and 2026-10). Faithful to Gu et al.'s VQA-RAD prompt and Yishan's LLM-judge scoring, but on a different 50-item slice, comparable-but-not-identical to Yishan's 100-item protocol, so kept as its own series. GPT-5 here (74.0) is our drift/sanity check against Yishan's GPT-5 (67.0 on his 100-item slice): same ballpark, different items.",
       "reference_line": null,
       "runs": [
         {

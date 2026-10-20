@@ -278,8 +278,9 @@ function accuracyChart(proto) {
   if (proto.reference_line) {
     const ry = y(proto.reference_line.value);
     svg.append(svgEl("line", { class: "refline", x1: padL, y1: ry, x2: W - padR, y2: ry }));
-    const rt = svgEl("text", { class: "refline-label", x: W - padR, y: ry - 4, "text-anchor": "end" });
-    rt.textContent = proto.reference_line.label; svg.append(rt);
+    // short label at the left end, over the first (paper-era) column; the full label is in the caption under the chart
+    const rt = svgEl("text", { class: "refline-label", x: padL + 4, y: ry - 4, "text-anchor": "start" });
+    rt.textContent = `bar ${proto.reference_line.value}${proto.unit || ""}`; svg.append(rt);
   }
 
   // bars

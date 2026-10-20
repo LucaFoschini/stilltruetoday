@@ -121,7 +121,7 @@
       "higher_is_better": true,
       "contributor": "StillTrueToday",
       "source_repo": "this repo · harness/reese_run.py",
-      "provenance": "Numbers produced BY StillTrueToday (2026-07) on the paper's own Zenodo prompts. Our LLM-judge grading runs ~3–4 pts more lenient than the paper's PhEval programmatic grounding. Validated: we scored the authors' own stored o1-preview responses at 26.0% against their published 23.6%. So compare within this series, and treat absolute values against the 35.5% line with that bias in mind.",
+      "provenance": "Numbers produced BY StillTrueToday (2026-07 and 2026-10) on the paper's own Zenodo prompts. Our LLM-judge grading runs ~3–4 pts more lenient than the paper's PhEval programmatic grounding. Validated: we scored the authors' own stored o1-preview responses at 26.0% against their published 23.6%. So compare within this series, and treat absolute values against the 35.5% line with that bias in mind.",
       "reference_line": {
         "value": 35.5,
         "label": "Exomiser, traditional tool (phenotype-only), Top-1 = 35.5%"
