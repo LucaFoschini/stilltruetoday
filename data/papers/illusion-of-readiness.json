@@ -18,7 +18,7 @@
     "claim_status": {
       "verdict": "still-true",
       "as_of": "2026-10",
-      "basis": "Accuracy keeps climbing (Oct 2026 re-run on our 50-item VQA-RAD slice: Claude Opus 5.5 78%, Gemini 4 Argon 76%, GPT-6.1 Sol Pro 70%; Jul 2026: GPT-5.5 Pro 86.5% on 37 items, Claude Fable 5 80%), but the paper's bar is robustness and clinical readiness, not raw accuracy, and that bar still isn't met: nobody has re-run the stress tests."
+      "basis": "Accuracy keeps climbing (Oct 2026 re-run on our 50-item VQA-RAD slice: Claude Opus 5.5 78%, Gemini 4 Argon 76%, GPT-6.1 Sol Pro 70%, GPT-6 Astra 70%; Jul 2026: GPT-5.5 Pro 86.5% on 37 items, Claude Fable 5 80%), but the paper's bar is robustness and clinical readiness, not raw accuracy, and that bar still isn't met: nobody has re-run the stress tests."
     }
   },
   "contributors": [
@@ -240,6 +240,14 @@
         },
         {
           "model": "GPT-6.1 Sol Pro",
+          "score": 70.0,
+          "model_release_date": "2026-09",
+          "run_date": "2026-10",
+          "n_items": 50,
+          "era": "current"
+        },
+        {
+          "model": "GPT-6 Astra",
           "score": 70.0,
           "model_release_date": "2026-09",
           "run_date": "2026-10",

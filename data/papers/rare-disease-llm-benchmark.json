@@ -200,6 +200,16 @@
           "era": "current",
           "top3": 56.0,
           "top10": 64.0
+        },
+        {
+          "model": "GPT-6 Astra",
+          "score": 46.0,
+          "model_release_date": "2026-09",
+          "run_date": "2026-10",
+          "n_items": 50,
+          "era": "current",
+          "top3": 54.0,
+          "top10": 58.0
         }
       ]
     }
